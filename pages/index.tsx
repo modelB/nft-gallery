@@ -10,11 +10,12 @@ const Home: NextPage = () => {
   const [pageKeys, setPageKeys] = useState([] as string[]);
   const [currentPage, setCurrentPage] = useState(0);
 
+  const api_key = "[INSERT Alchemy Eth Mainnet API Key]";
+
   const [NFTs, setNFTs] = useState([]);
   const fetchNFTs = async (page: number) => {
     let nfts;
     console.log("fetching nfts");
-    const api_key = "[ADD ALCHEMY ETHEREUM MAINNET API KEY]";
     const baseURL = `https://eth-mainnet.alchemyapi.io/v2/${api_key}/getNFTs/`;
     var requestOptions = {
       method: "GET",
@@ -50,7 +51,6 @@ const Home: NextPage = () => {
       var requestOptions = {
         method: "GET",
       };
-      const api_key = "[ADD ALCHEMY ETHEREUM MAINNET API KEY]";
       const baseURL = `https://eth-mainnet.alchemyapi.io/v2/${api_key}/getNFTsForCollection/`;
       const fetchURL = `${baseURL}?contractAddress=${collection}${
         page && pageKeys[page] ? `&startToken=${pageKeys[page]}` : ""
@@ -119,7 +119,7 @@ const Home: NextPage = () => {
         </label>
         <button
           className={
-            "disabled:bg-slate-500 text-white bg-blue-400 px-4 py-2 mt-3 rounded-sm w-1/5 hover:bg-green-600"
+            "disabled:bg-slate-500 text-white bg-pink-500 px-4 py-2 mt-3 rounded-sm w-1/5 hover:bg-green-400"
           }
           onClick={() => getNFTs()}
         >
@@ -128,7 +128,7 @@ const Home: NextPage = () => {
         <div className="flex flex-row gap-x-3">
           <button
             disabled={currentPage < 1}
-            className="text-blue-400 disabled:text-slate-800"
+            className="text-pink-500 disabled:text-slate-800"
             onClick={() => {
               if (currentPage > 0) {
                 const newPage = currentPage - 1;
@@ -141,7 +141,7 @@ const Home: NextPage = () => {
           </button>
           <button
             disabled={pageKeys.length === 0}
-            className="text-blue-400 disabled:text-slate-800"
+            className="text-pink-500 disabled:text-slate-800"
             onClick={() => {
               if (pageKeys.length) {
                 const newPage = currentPage + 1;
@@ -154,10 +154,10 @@ const Home: NextPage = () => {
           </button>
         </div>
       </div>
-      <div className="flex flex-wrap gap-y-12 mt-4 w-5/6 gap-x-2 justify-center">
+      <div className="flex flex-wrap gap-y-2 mt-4 w-5/6 gap-x-2 justify-center">
         {NFTs.length
-          ? NFTs.map((nft, i) => {
-              return <NFTCard nft={nft} indexKey={i + 1}></NFTCard>;
+          ? NFTs.map((nft) => {
+              return <NFTCard nft={nft}></NFTCard>;
             })
           : null}
       </div>

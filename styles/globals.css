@@ -11,4 +11,18 @@
 
 .fa-copy:hover {
     color: lightblue;
+    cursor: pointer;
+}
+
+body {
+    background-image: url("../public/ffflux.svg");
+    background-size: 100%;
+}
+
+.card-wrap .details {
+    visibility: hidden;
+}
+
+.card-wrap:hover .details {
+    visibility: visible;
 }
